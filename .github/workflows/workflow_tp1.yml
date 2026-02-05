@@ -1,5 +1,5 @@
 #
-# Copyright Â© 2016-2026 The Thingsboard Authors
+# Copyright © 2016-2026 The Thingsboard Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -55,6 +55,9 @@ jobs:
 
       - name: Build ThingsBoard common modules
         run: mvn -T1 clean install -DskipTests
+
+      - name: Run tests for selected modules
+        run: mvn -pl application -am test "-Dtest=DeviceActorMessageProcessorTest" "-Dsurefire.failIfNoSpecifiedTests=false"
 
       - name: Start ThingsBoard (Docker)
         run: |
